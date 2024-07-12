@@ -12,7 +12,7 @@ class AnimeRepositoryImpl @Inject constructor(private val apiService: ApiService
     AnimeRepository {
     override suspend fun getTopAnime(): Flow<Result<TopAnimeResponse>> = flow {
         try {
-            val response = apiService.getTopAnime()
+            val response = apiService.getTopAnime(1)
             emit(Result.Success(response))
         } catch (e: Exception) {
             emit(Result.Error(e))
