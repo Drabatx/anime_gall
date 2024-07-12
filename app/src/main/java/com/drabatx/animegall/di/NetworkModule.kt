@@ -1,4 +1,4 @@
-package com.drabatx.animegall.data.di
+package com.drabatx.animegall.di
 
 import com.drabatx.animegall.data.domain.repository.anime.AnimeRepository
 import com.drabatx.animegall.data.domain.repository.anime.AnimeRepositoryImpl

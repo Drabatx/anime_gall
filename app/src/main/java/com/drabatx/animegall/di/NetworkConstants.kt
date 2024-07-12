@@ -1,4 +1,4 @@
-package com.drabatx.animegall.data.di
+package com.drabatx.animegall.di
 
 object NetworkConstants {
     const val BASE_URL = "https://api.jikan.moe/v4/"

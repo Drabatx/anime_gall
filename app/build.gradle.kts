@@ -71,6 +71,9 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+    implementation(libs.androidx.material.icons)
+
+
     //dagger
     implementation(libs.dagger.hilt)
     kapt (libs.dagger.compiler)
@@ -85,7 +88,9 @@ dependencies {
     //
     implementation(libs.glide)
     implementation(libs.androidx.viewmodel.compose)
-    implementation("io.coil-kt:coil-compose:2.6.0")
-    implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
+    implementation(libs.coil.compose)
+    implementation(libs.constraintlayout)
+    implementation(libs.paging.compose)
+    implementation(libs.hilt.navigation.compose)
 
 }
