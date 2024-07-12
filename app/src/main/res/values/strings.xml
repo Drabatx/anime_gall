@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AnimeGall</string>
+    <string name="example_icon">Example Icon</string>
+    <string name="text_accept">Aceptar</string>
 </resources>

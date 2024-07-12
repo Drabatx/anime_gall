@@ -1,6 +1,6 @@
 package com.drabatx.animegall.presentation.model
 
-data class AnimeItemList(
+data class AnimeModel(
     val name: String,
     val status: String,
     val score: Double,
@@ -17,14 +17,31 @@ data class AnimeItemList(
         private var image: String = ""
 
         fun setName(name: String) = apply { this.name = name }
-        fun setStatus(status: String) = apply { this.status = status }
+        fun setStatus(status: String) = apply {
+            when {
+                status.equals("Finished Airing") -> {
+                    this.status = "Finalizado"
+                }
+
+                status.equals("Currently Airing") -> {
+                    this.status = "En transmisión"
+                }
+                status.equals("Not yet aired") -> {
+                    this.status = "Próximamente"
+                }
+                else -> {
+                    status
+                }
+            }
+        }
+
         fun setScore(score: Double) = apply { this.score = score }
         fun setRank(rank: Int) = apply { this.rank = rank }
         fun setYear(year: Int) = apply { this.year = year }
         fun setImage(image: String) = apply { this.image = image }
 
-        fun build(): AnimeItemList {
-            return AnimeItemList(name, status, score, rank, year, image)
+        fun build(): AnimeModel {
+            return AnimeModel(name, status, score, rank, year, image)
         }
     }
 }

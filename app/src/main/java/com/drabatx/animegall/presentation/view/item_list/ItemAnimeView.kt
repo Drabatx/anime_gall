@@ -27,7 +27,7 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import coil.compose.AsyncImage
-import com.drabatx.animegall.presentation.model.AnimeItemList
+import com.drabatx.animegall.presentation.model.AnimeModel
 import com.drabatx.animegall.presentation.theme.margin_small
 import com.drabatx.animegall.presentation.theme.margin_xsmall
 import com.drabatx.animegall.presentation.widgets.AutoResizeText
@@ -35,7 +35,7 @@ import com.drabatx.animegall.presentation.widgets.FontSizeRange
 import com.drabatx.animegall.presentation.widgets.RatingBar
 
 @Composable
-fun ItemAnimeView(animeItem: AnimeItemList) {
+fun ItemAnimeView(animeItem: AnimeModel) {
     Card(
         shape = RoundedCornerShape(margin_small),
         modifier = Modifier
