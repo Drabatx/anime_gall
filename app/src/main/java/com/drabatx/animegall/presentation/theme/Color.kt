@@ -1,4 +1,4 @@
-package com.drabatx.animegall.ui.theme
+package com.drabatx.animegall.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 

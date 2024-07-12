@@ -1,4 +1,4 @@
-package com.drabatx.animegall.ui.model
+package com.drabatx.animegall.presentation.model
 
 data class AnimeItemList(
     val name: String,

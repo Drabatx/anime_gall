@@ -1,7 +1,7 @@
-package com.drabatx.animegall.ui.mappers
+package com.drabatx.animegall.presentation.mappers
 
 import com.drabatx.animegall.data.model.response.anime.topanime.Anime
-import com.drabatx.animegall.ui.model.AnimeItemList
+import com.drabatx.animegall.presentation.model.AnimeItemList
 
 object TopAnimeResponseToAnimeItemListMapper {
     fun map(anime: Anime) = AnimeItemList.Builder()

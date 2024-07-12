@@ -1,4 +1,4 @@
-package com.drabatx.animegall.ui.widgets
+package com.drabatx.animegall.presentation.widgets
 
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Text

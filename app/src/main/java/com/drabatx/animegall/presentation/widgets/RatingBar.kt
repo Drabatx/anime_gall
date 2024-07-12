@@ -1,4 +1,4 @@
-package com.drabatx.animegall.ui.widgets
+package com.drabatx.animegall.presentation.widgets
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material.icons.Icons

@@ -1,4 +1,4 @@
-package com.drabatx.animegall.ui.view.viewmodels
+package com.drabatx.animegall.presentation.view.viewmodels
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.drabatx.animegall.data.domain.usecase.anime.GetTopAnimeListUseCase
 import com.drabatx.animegall.data.model.response.anime.topanime.TopAnimeResponse
-import com.drabatx.animegall.ui.model.AnimeItemList
+import com.drabatx.animegall.presentation.model.AnimeItemList
 import com.drabatx.animegall.utils.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

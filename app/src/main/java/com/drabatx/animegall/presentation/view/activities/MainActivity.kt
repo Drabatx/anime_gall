@@ -1,4 +1,4 @@
-package com.drabatx.animegall.ui.view.activities
+package com.drabatx.animegall.presentation.view.activities
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -11,9 +11,9 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.drabatx.animegall.ui.theme.AnimeGallTheme
-import com.drabatx.animegall.ui.view.screens.TopAnimeScreen
-import com.drabatx.animegall.ui.view.viewmodels.TopAnimViewModel
+import com.drabatx.animegall.presentation.theme.AnimeGallTheme
+import com.drabatx.animegall.presentation.view.screens.TopAnimeScreen
+import com.drabatx.animegall.presentation.view.viewmodels.TopAnimViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
