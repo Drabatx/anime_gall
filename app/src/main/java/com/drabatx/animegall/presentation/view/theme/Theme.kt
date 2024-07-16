@@ -1,4 +1,4 @@
-package com.drabatx.animegall.presentation.theme
+package com.drabatx.animegall.presentation.view.theme
 
 import android.app.Activity
 import android.os.Build
@@ -10,31 +10,29 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
+private val BaseColor = Color(0xFFCF5F69)
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+    primary = BaseColor,
+    secondary = BaseColor.copy(alpha = 0.8f),
+    tertiary = BaseColor.copy(alpha = 0.6f),
+    onPrimary = Color.White, // Color de texto sobre el color primario
+    onSecondary = Color.White, // Color de texto sobre el color secundario
+    onTertiary = Color.White // Color de texto sobre el color terciario
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
-
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
+    primary = BaseColor.copy(alpha = 0.5f),
+    secondary = BaseColor.copy(alpha = 0.3f),
+    tertiary = BaseColor.copy(alpha = 0.1f),
+    onPrimary = Color.Black, // Color de texto sobre el color primario
+    onSecondary = Color.Black, // Color de texto sobre el color secundario
+    onTertiary = Color.Black // Color de texto sobre el color terciario
 )
 
 @Composable

@@ -14,6 +14,8 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawBehind
@@ -28,11 +30,13 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import coil.compose.AsyncImage
 import com.drabatx.animegall.presentation.model.AnimeModel
-import com.drabatx.animegall.presentation.theme.margin_small
-import com.drabatx.animegall.presentation.theme.margin_xsmall
+import com.drabatx.animegall.presentation.view.theme.margin_small
+import com.drabatx.animegall.presentation.view.theme.margin_xsmall
+import com.drabatx.animegall.presentation.view.utils.AnimeFilter
 import com.drabatx.animegall.presentation.widgets.AutoResizeText
 import com.drabatx.animegall.presentation.widgets.FontSizeRange
 import com.drabatx.animegall.presentation.widgets.RatingBar
+import com.drabatx.animegall.presentation.widgets.shimmerBrush
 
 @Composable
 fun ItemAnimeView(animeItem: AnimeModel) {
@@ -49,6 +53,7 @@ fun ItemAnimeView(animeItem: AnimeModel) {
                 .wrapContentHeight()
         ) {
             val (imageAnimeItem, rankText, statusText, gradientLayout) = createRefs()
+            val showShimmer = remember { mutableStateOf(true) }
             AsyncImage(
                 model = animeItem.image,
                 contentDescription = null,
@@ -57,35 +62,39 @@ fun ItemAnimeView(animeItem: AnimeModel) {
                     .fillMaxWidth()
                     .fillMaxHeight()
                     .aspectRatio(2f / 4f)
+                    .background(shimmerBrush(targetValue = 1300f, showShimmer = showShimmer.value))
                     .constrainAs(imageAnimeItem) {
                         top.linkTo(parent.top)
                         start.linkTo(parent.start)
                         end.linkTo(parent.end)
                         bottom.linkTo(parent.bottom)
-                    }
+                    },
+                onSuccess = {showShimmer.value = false}
             )
-
-            Box(
-                modifier = Modifier
-                    .constrainAs(rankText) {
-                        top.linkTo(imageAnimeItem.top, margin = margin_small)
-                        end.linkTo(parent.end, margin = margin_small)
-                    }
-                    .drawBehind {
-                        val circleColor = Color(0xFFE5BE01) // Amarillo
-                        val textSize = size.width / 2 // Ajusta el radio según el tamaño del texto
-                        drawCircle(
-                            color = circleColor,
-                            radius = textSize,
-                            center = Offset(size.width / 2, size.height / 2)
-                        )
-                    }
-            ) {
-                Text(
-                    text = animeItem.rank.toString(), color = Color.White,
-                    style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.Bold),
-                    modifier = Modifier.padding(margin_small) // Añade un poco de padding interno
-                )
+            if (animeItem.filter != AnimeFilter.PROXIMAMENTE) {
+                Box(
+                    modifier = Modifier
+                        .constrainAs(rankText) {
+                            top.linkTo(imageAnimeItem.top, margin = margin_small)
+                            end.linkTo(parent.end, margin = margin_small)
+                        }
+                        .drawBehind {
+                            val circleColor = Color(0xFFE5BE01) // Amarillo
+                            val textSize =
+                                size.width / 2 // Ajusta el radio según el tamaño del texto
+                            drawCircle(
+                                color = circleColor,
+                                radius = textSize,
+                                center = Offset(size.width / 2, size.height / 2)
+                            )
+                        }
+                ) {
+                    Text(
+                        text = animeItem.rank.toString(), color = Color.White,
+                        style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.Bold),
+                        modifier = Modifier.padding(margin_small) // Añade un poco de padding interno
+                    )
+                }
             }
             Box(
                 modifier = Modifier
@@ -126,18 +135,20 @@ fun ItemAnimeView(animeItem: AnimeModel) {
                         top.linkTo(parent.top)
                         start.linkTo(parent.start)
                     }) {
-                    Text(
-                        text = "${animeItem.score}",
-                        style = MaterialTheme.typography.titleSmall.copy(
-                            color = Color.White,
-                            fontWeight = FontWeight.Bold
-                        ),
-                        modifier = Modifier.padding(end = margin_small)
-                    )
-                    RatingBar(
-                        starsModifier = Modifier.size(18.dp),
-                        rating = animeItem.score / 2
-                    )
+                    if (animeItem.filter != AnimeFilter.PROXIMAMENTE) {
+                        Text(
+                            text = "${animeItem.score}",
+                            style = MaterialTheme.typography.titleSmall.copy(
+                                color = Color.White,
+                                fontWeight = FontWeight.Bold
+                            ),
+                            modifier = Modifier.padding(end = margin_small)
+                        )
+                        RatingBar(
+                            starsModifier = Modifier.size(18.dp),
+                            rating = animeItem.score / 2
+                        )
+                    }
                 }
 
                 AutoResizeText(

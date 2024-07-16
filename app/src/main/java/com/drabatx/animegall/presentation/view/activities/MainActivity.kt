@@ -3,17 +3,8 @@ package com.drabatx.animegall.presentation.view.activities
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.drabatx.animegall.presentation.theme.AnimeGallTheme
-import com.drabatx.animegall.presentation.view.screens.TopAnimeScreen
-import com.drabatx.animegall.presentation.view.viewmodels.TopAnimViewModel
+import com.drabatx.animegall.presentation.navigation.AppNavigation
+import com.drabatx.animegall.presentation.view.theme.AnimeGallTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,23 +13,42 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             AnimeGallTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
-                ) {
-                    MyApp()
-//                    Greeting("Android")
-                }
+                AppNavigation()
             }
         }
     }
 }
 
-@Composable
-fun MyApp() {
-    val topAnimViewModel: TopAnimViewModel = viewModel()
-    Scaffold(content = { padding ->
-        TopAnimeScreen(Modifier.padding(padding), topAnimViewModel)
-    })
-}
+//@OptIn(ExperimentalMaterial3Api::class)
+//@Composable
+//fun MyApp() {
+//    val topAnimViewModel: TopAnimViewModel = viewModel()
+//    Scaffold(topBar = {
+//        TopAppBar(
+//            title= {
+//                Text(
+//                    text = stringResource(id = R.string.app_name),
+//                    style = MaterialTheme.typography.headlineSmall.copy(fontWeight = FontWeight.Bold),
+//                    color = MaterialTheme.colorScheme.onPrimary,
+//                    textAlign = TextAlign.Center,
+//                    modifier = Modifier.fillMaxWidth()
+//                )
+//            },
+//            colors = TopAppBarDefaults.topAppBarColors(
+//                containerColor = MaterialTheme.colorScheme.primary // Color de fondo
+//            ),
+//            navigationIcon = {
+//                Icon(
+//                    painter = painterResource(id = R.drawable.logo), // Reemplaza con tu icono
+//                    contentDescription = "Logo",
+//                    modifier = Modifier.offset(x = margin_small),
+//                    tint = MaterialTheme.colorScheme.onPrimary // Ajusta el color del icono si es necesario
+//                )
+//            }
+//
+//        )
+//    }, content = { padding ->
+////        AnimeScreen(Modifier.padding(padding), topAnimViewModel)
+//    })
+//}
 

@@ -2,4 +2,14 @@
     <string name="app_name">AnimeGall</string>
     <string name="example_icon">Example Icon</string>
     <string name="text_accept">Aceptar</string>
+    <string name="no_results">Sin resultados</string>
+    <string name="no_results_please_retry_later">No hay animes disponibles en este momento. Por favor, inténtalo más tarde.</string>
+    <string name="retry">Reintentar</string>
+    <string name="error_to_load_data">Error al cargar los datos</string>
+    <string name="error">Error</string>
+    <string name="label_ranked">Ranked</string>
+    <string name="label_score">Score</string>
+    <string name="popularity">Popularity</string>
+    <string name="menu_anime_list">Anime List</string>
+    <string name="menu_anime_full">Anime Full</string>
 </resources>

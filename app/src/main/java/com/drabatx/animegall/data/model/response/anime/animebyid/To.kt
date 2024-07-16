@@ -1,0 +1,7 @@
+package com.drabatx.animegall.data.model.response.anime.animebyid
+
+data class To(
+    val day: Int,
+    val month: Int,
+    val year: Int
+)

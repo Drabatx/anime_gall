@@ -1,4 +1,4 @@
-package com.drabatx.animegall.presentation.theme
+package com.drabatx.animegall.presentation.view.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

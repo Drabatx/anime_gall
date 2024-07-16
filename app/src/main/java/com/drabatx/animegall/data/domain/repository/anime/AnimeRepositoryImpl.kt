@@ -5,6 +5,8 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.drabatx.animegall.data.network.ApiService
 import com.drabatx.animegall.presentation.model.AnimeModel
+import com.drabatx.animegall.presentation.model.FullAnimeModel
+import com.drabatx.animegall.utils.Result
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -12,23 +14,30 @@ import javax.inject.Inject
 
 class AnimeRepositoryImpl @Inject constructor(private val apiService: ApiService) :
     AnimeRepository {
-    override suspend fun getTopAnime(): Flow<PagingData<AnimeModel>> {
-        return Pager(config = PagingConfig(pageSize = PAGE_SIZE, prefetchDistance = PREFETCH_DISTANCE),
+    override suspend fun getTopAnime(filter: String): Flow<PagingData<AnimeModel>> {
+        val animePagingSource = AnimePagingSource(apiService)
+        animePagingSource.setFilter(filter)
+        return Pager(config = PagingConfig(
+            pageSize = PAGE_SIZE,
+            prefetchDistance = PREFETCH_DISTANCE
+        ),
             pagingSourceFactory = {
-                AnimePagingSource(apiService)
+                animePagingSource
             }).flow
+    }
+
+    override suspend fun findAnimeById(animeId: Int): Flow<Result<FullAnimeModel>> = flow {
+        emit(Result.Loading)
+        try {
+            val response = apiService.findAnimeById(animeId)
+//            emit(Result.Success(response.data.toFullAnimeModel()))
+        } catch (e: Exception) {
+            emit(Result.Error(e))
+        }
     }
 
     companion object {
         private const val PAGE_SIZE = 25
         private const val PREFETCH_DISTANCE = 5
     }
-    //    override suspend fun getTopAnime(): Flow<Result<TopAnimeResponse>> = flow {
-//        try {
-//            val response = apiService.getTopAnime(1)
-//            emit(Result.Success(response))
-//        } catch (e: Exception) {
-//            emit(Result.Error(e))
-//        }
-//    }
 }
