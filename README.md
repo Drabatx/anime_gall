@@ -1,4 +1,4 @@
-## Anbime Gall
+## Anime Gall
 **Anime Gall** es una aplicación que consume la api de [Jikan API](https://jikan.moe/) y muestra una lista de animes, filtra la lista en varias categorias y ver detalles.
 
 ### Funcionalidades
