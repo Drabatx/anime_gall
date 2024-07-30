@@ -5,6 +5,7 @@ import com.drabatx.animegall.presentation.model.AnimeModel
 
 object TopAnimeResponseToAnimeItemListMapper {
     fun map(anime: Anime, currentFilter: String) = AnimeModel.Builder()
+        .setId(anime.mal_id)
         .setName(anime.title)
         .setStatus(anime.status)
         .setScore(anime.score)

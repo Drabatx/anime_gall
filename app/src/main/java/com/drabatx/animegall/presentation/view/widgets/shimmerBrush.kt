@@ -1,4 +1,4 @@
-package com.drabatx.animegall.presentation.widgets
+package com.drabatx.animegall.presentation.view.widgets
 
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat

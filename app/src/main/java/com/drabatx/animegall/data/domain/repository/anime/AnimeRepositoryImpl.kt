@@ -4,8 +4,9 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.drabatx.animegall.data.network.ApiService
+import com.drabatx.animegall.presentation.mappers.AnimeDetailsResponseToAnimeDetailsModelMapper
+import com.drabatx.animegall.presentation.model.AnimeDetailsModel
 import com.drabatx.animegall.presentation.model.AnimeModel
-import com.drabatx.animegall.presentation.model.FullAnimeModel
 import com.drabatx.animegall.utils.Result
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -26,11 +27,12 @@ class AnimeRepositoryImpl @Inject constructor(private val apiService: ApiService
             }).flow
     }
 
-    override suspend fun findAnimeById(animeId: Int): Flow<Result<FullAnimeModel>> = flow {
+    override suspend fun findAnimeById(animeId: Int): Flow<Result<AnimeDetailsModel>> = flow {
         emit(Result.Loading)
         try {
             val response = apiService.findAnimeById(animeId)
-//            emit(Result.Success(response.data.toFullAnimeModel()))
+            val animeDetails = AnimeDetailsResponseToAnimeDetailsModelMapper.map(response.data)
+            emit(Result.Success(animeDetails))
         } catch (e: Exception) {
             emit(Result.Error(e))
         }

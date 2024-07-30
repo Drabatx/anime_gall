@@ -3,7 +3,7 @@ package com.drabatx.animegall.presentation.view.viewmodels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.drabatx.animegall.data.domain.usecase.anime.GetAnimeByIdUseCase
-import com.drabatx.animegall.presentation.model.FullAnimeModel
+import com.drabatx.animegall.presentation.model.AnimeDetailsModel
 import com.drabatx.animegall.utils.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,8 +15,8 @@ import javax.inject.Inject
 @HiltViewModel
 class AnimeByIdViewModel @Inject constructor(private val getAnimeByIdUseCase: GetAnimeByIdUseCase) :
     ViewModel() {
-    private val _uiState = MutableStateFlow<Result<FullAnimeModel>>(Result.Initial)
-    val uiState: StateFlow<Result<FullAnimeModel>> = _uiState.asStateFlow()
+    private val _uiState = MutableStateFlow<Result<AnimeDetailsModel>>(Result.Loading)
+    val uiState: StateFlow<Result<AnimeDetailsModel>> = _uiState.asStateFlow()
 
     fun getAnimeById(animeId: Int) {
         viewModelScope.launch {

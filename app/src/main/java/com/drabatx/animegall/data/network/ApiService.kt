@@ -1,6 +1,6 @@
 package com.drabatx.animegall.data.network
 
-import com.drabatx.animegall.data.model.response.anime.FullAnimeResponse
+import com.drabatx.animegall.data.model.response.anime.AnimeDetailsResponse
 import com.drabatx.animegall.data.model.response.anime.TopAnimeResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -16,5 +16,5 @@ interface ApiService {
     ): TopAnimeResponse
 
     @GET("anime/{animeId}/full")
-    suspend fun findAnimeById(@Path("animeId") animId: Int):FullAnimeResponse
+    suspend fun findAnimeById(@Path("animeId") animId: Int):AnimeDetailsResponse
 }

@@ -3,6 +3,7 @@ package com.drabatx.animegall.presentation.model
 import com.drabatx.animegall.presentation.view.utils.AnimeFilter
 
 data class AnimeModel(
+    val id: Int,
     val name: String,
     val status: String,
     val score: Double,
@@ -12,6 +13,7 @@ data class AnimeModel(
     val filter: AnimeFilter
 ) {
     class Builder {
+        private var id: Int = 0
         private var name: String = ""
         private var status: String = ""
         private var score: Double = 0.0
@@ -20,6 +22,7 @@ data class AnimeModel(
         private var image: String = ""
         private var filter: AnimeFilter = AnimeFilter.TOP
 
+        fun setId(id: Int) = apply { this.id = id }
         fun setName(name: String) = apply { this.name = name }
         fun setStatus(status: String) = apply {
             when (status) {
@@ -45,10 +48,12 @@ data class AnimeModel(
         fun setRank(rank: Int) = apply { this.rank = rank }
         fun setYear(year: Int) = apply { this.year = year }
         fun setImage(image: String) = apply { this.image = image }
-        fun setFilter(filter: String) = apply { this.filter = AnimeFilter.entries.find {  it.filter == filter}?:AnimeFilter.TOP }
+        fun setFilter(filter: String) = apply {
+            this.filter = AnimeFilter.entries.find { it.filter == filter } ?: AnimeFilter.TOP
+        }
 
         fun build(): AnimeModel {
-            return AnimeModel(name, status, score, rank, year, image, filter)
+            return AnimeModel(id, name, status, score, rank, year, image, filter)
         }
     }
 }

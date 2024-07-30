@@ -12,4 +12,8 @@
     <string name="popularity">Popularity</string>
     <string name="menu_anime_list">Anime List</string>
     <string name="menu_anime_full">Anime Full</string>
+    <string name="synopsis">Synopsis</string>
+    <string name="members">Members</string>
+    <string name="no_anime_found">No se encontro el anime.</string>
+    <string name="trailer">Trailer</string>
 </resources>

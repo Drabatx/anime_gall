@@ -1,6 +1,7 @@
 package com.drabatx.animegall.presentation.view.item_list
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
@@ -28,25 +29,35 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
+import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.drabatx.animegall.presentation.model.AnimeModel
+import com.drabatx.animegall.presentation.navigation.AppScreens
 import com.drabatx.animegall.presentation.view.theme.margin_small
 import com.drabatx.animegall.presentation.view.theme.margin_xsmall
 import com.drabatx.animegall.presentation.view.utils.AnimeFilter
-import com.drabatx.animegall.presentation.widgets.AutoResizeText
-import com.drabatx.animegall.presentation.widgets.FontSizeRange
-import com.drabatx.animegall.presentation.widgets.RatingBar
-import com.drabatx.animegall.presentation.widgets.shimmerBrush
+import com.drabatx.animegall.presentation.view.widgets.AutoResizeText
+import com.drabatx.animegall.presentation.view.widgets.FontSizeRange
+import com.drabatx.animegall.presentation.view.widgets.RatingBar
+import com.drabatx.animegall.presentation.view.widgets.shimmerBrush
 
 @Composable
-fun ItemAnimeView(animeItem: AnimeModel) {
+fun ItemAnimeView(animeItem: AnimeModel, navController: NavController) {
     Card(
         shape = RoundedCornerShape(margin_small),
         modifier = Modifier
             .fillMaxWidth()
             .wrapContentHeight()
+            .clickable {
+                navController.navigate(
+                    AppScreens.AnimeFull.setAnimeId(
+                        animeId = animeItem.id,
+                        animeName = animeItem.name
+                    )
+                )
+            },
 
-    ) {
+        ) {
         ConstraintLayout(
             modifier = Modifier
                 .fillMaxWidth()
@@ -69,7 +80,7 @@ fun ItemAnimeView(animeItem: AnimeModel) {
                         end.linkTo(parent.end)
                         bottom.linkTo(parent.bottom)
                     },
-                onSuccess = {showShimmer.value = false}
+                onSuccess = { showShimmer.value = false }
             )
             if (animeItem.filter != AnimeFilter.PROXIMAMENTE) {
                 Box(
